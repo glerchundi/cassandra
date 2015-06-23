@@ -1,0 +1,15 @@
+#!/usr/bin/execlineb -P
+backtick -n CONTAINER_ADDR { hostname -I }
+import -u CONTAINER_ADDR
+with-contenv
+multisubstitute
+{
+  import -u -D"/" CONFD_PREFIX
+  import -u -D"env" CONFD_BACKEND
+  import -u -D ${CONTAINER_ADDR} CASSANDRA_SEEDS
+}
+export CASSANDRA_LISTEN_ADDRESS ${CONTAINER_ADDR}
+export CASSANDRA_RPC_ADDRESS "0.0.0.0"
+export CASSANDRA_BROADCAST_RPC_ADDRESS ${CONTAINER_ADDR}
+export CASSANDRA_SEEDS ${CASSANDRA_SEEDS}
+confd --onetime --prefix="${CONFD_PREFIX}" --tmpl-src="/etc/cassandra/cassandra.yaml.tmpl" --tmpl-dest="/etc/cassandra/cassandra.yaml" ${CONFD_BACKEND}
