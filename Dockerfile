@@ -14,7 +14,7 @@ RUN apt-key adv --keyserver pgp.mit.edu --recv-keys F758CE318D77295D && \
 
 # cassandra
 RUN apt-get-min update && \
-    apt-get-install-min cassandra=2.1.6 cassandra-tools=2.1.6
+    apt-get-install-min cassandra=2.1.7 cassandra-tools=2.1.7
 
 # Necessary since cassandra is trying to override the system limitations
 # See https://groups.google.com/forum/#!msg/docker-dev/8TM_jLGpRKU/dewIQhcs7oAJ
