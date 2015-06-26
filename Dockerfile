@@ -25,7 +25,7 @@ ADD https://github.com/glerchundi/confd/releases/download/v0.11.0-beta1/confd-0.
 RUN chmod 0755 /usr/bin/confd
 
 # kubernetes cassandra seed provider
-ADD https://github.com/glerchundi/kubernetes-cassandra-seed-provider/releases/download/v0.0.4/kubernetes-cassandra-0.0.4.jar /kubernetes-cassandra.jar
+ADD https://github.com/glerchundi/kubernetes-cassandra-seed-provider/releases/download/v0.1.0/kubernetes-cassandra-0.1.0.jar /kubernetes-cassandra.jar
 
 
 ##
