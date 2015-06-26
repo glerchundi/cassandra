@@ -25,7 +25,7 @@ ADD https://github.com/glerchundi/confd/releases/download/v0.11.0-beta1/confd-0.
 RUN chmod 0755 /usr/bin/confd
 
 # kubernetes cassandra seed provider
-ADD https://github.com/glerchundi/kubernetes-cassandra-seed-provider/releases/download/v0.0.3/kubernetes-cassandra-0.0.3.jar /kubernetes-cassandra.jar
+ADD https://github.com/glerchundi/kubernetes-cassandra-seed-provider/releases/download/v0.0.4/kubernetes-cassandra-0.0.4.jar /kubernetes-cassandra.jar
 
 
 ##
@@ -39,20 +39,8 @@ COPY rootfs /
 VOLUME [ "/var/lib/cassandra" ]
 VOLUME [ "/var/log/cassandra" ]
 
-# ports
-# - Cassandra inter-node cluster communication.
-EXPOSE 7000
-# - Cassandra SSL inter-node cluster communication.
-EXPOSE 7001
-# - Cassandra JMX monitoring port.
-EXPOSE 7199
-# - Cassandra client port.
-EXPOSE 9042
-# - Cassandra client port (Thrift).
-EXPOSE 9160
-# - OpsCenter agent port. The agents listen on this port for SSL traffic initiated by OpsCenter
-#EXPOSE 61621O
-
+# ports (7000=inter-node,7001=inter-node-ssl,7199=jmx,9042=client,9160=client-thrift)
+EXPOSE 7000 7001 7199 9042 9160
 
 ##
 ## CLEANUP
