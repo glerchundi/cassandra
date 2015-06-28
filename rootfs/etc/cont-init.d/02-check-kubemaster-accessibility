@@ -1,0 +1,7 @@
+#!/usr/bin/execlineb -P
+
+backtick -n TOKEN { s6-cat /var/run/secrets/kubernetes.io/serviceaccount/token }
+import -u TOKEN
+
+with-retries -n 3 -t 10000
+curl -k https://kubernetes.default.cluster.local/api/v1/namespaces/default/endpoints/cassandra -H "Authorization: Bearer ${TOKEN}"
